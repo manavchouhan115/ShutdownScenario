@@ -1,0 +1,52 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.05rem 0.45rem 0.05rem 0.3rem;
+  font-size: var(--badge-font, 0.8rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: #ffffff;
+  background: var(--color-text-muted);
+  border-radius: 999px;
+}
+
+.badge svg {
+  width: var(--badge-icon, 0.95rem);
+  height: var(--badge-icon, 0.95rem);
+  flex: none;
+}
+
+.harmed {
+  background: var(--color-harmed);
+}
+
+.blocked {
+  background: var(--color-agent);
+}
+
+.stopped {
+  background: var(--color-stopped);
+}
+
+/* Yellow needs dark text to stay readable. */
+.flagged {
+  color: var(--color-text);
+  background: var(--color-intervene);
+}
+
+.confirmed {
+  background: var(--color-confirmed);
+}
+
+.disrupted {
+  background: var(--color-disrupted);
+}
+
+.queued {
+  background: #2b6cb0;
+}
+
+.deciding {
+  background: #1d3f9e;
+}

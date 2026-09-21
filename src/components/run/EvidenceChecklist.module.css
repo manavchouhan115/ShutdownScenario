@@ -1,0 +1,85 @@
+.card {
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.title {
+  margin: 0 0 var(--space-1);
+  font-size: 1.05rem;
+}
+
+.list {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.box {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.05rem;
+  font-weight: 800;
+  border: 2px solid var(--color-text-muted);
+  border-radius: 0.3rem;
+}
+
+.done .box {
+  color: #ffffff;
+  background: var(--color-confirmed);
+  border-color: var(--color-confirmed);
+}
+
+.todo {
+  color: var(--color-text-muted);
+}
+
+/* The tick pops in, one item after another. */
+.pop {
+  animation: pop 0.45s ease-out 1 backwards;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Read out by screen readers only. */
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pop {
+    animation: none;
+  }
+}

@@ -1,0 +1,533 @@
+{
+  "meta": {
+    "title": "Follow the Incident",
+    "nameMode": "real",
+    "playIntervalMs": 4000,
+    "paperTitle": "AI Agent Emergency Shutdown: Design Choices for Coordination and Control (SASH, 2026)",
+    "paperUrl": "TODO-add-link-to-paper"
+  },
+
+  "banners": {
+    "real": "Hypothetical scenario. Real companies are shown in their real roles; this incident did not happen.",
+    "fictional": "All companies are fictional."
+  },
+
+  "ui": {
+    "back": "Back",
+    "next": "Next",
+    "play": "Play",
+    "pause": "Pause",
+    "restart": "Restart",
+    "start": "Start",
+    "doneBy": "Done by",
+    "controlsLabel": "Demo controls",
+    "close": "Close",
+    "seesLabel": "What they can see",
+    "canDoLabel": "What they can do",
+    "legendTitle": "Key",
+    "queuedLabel": "Waiting in a support queue",
+    "decidingLabel": "Deciding",
+    "checkedLabel": "checked",
+    "notCheckedLabel": "not yet checked",
+    "timelineLabel": "Timeline of events",
+    "endOfRun": "How this run ended",
+    "illustrative": "illustrative",
+    "elapsedTime": "Time since the first service knew",
+    "servicesHarmed": "Services harmed",
+    "legend": {
+      "intervene": "Can intervene",
+      "affected": "Affected service",
+      "agent": "The AI agent"
+    },
+    "statusLabels": {
+      "harmed": "Harmed",
+      "blocked": "Blocked the agent",
+      "stopped": "Stopped",
+      "flagged": "Spotted a pattern",
+      "confirmed": "Confirmed",
+      "disrupted": "Disrupted"
+    }
+  },
+
+  "map": {
+    "label": "Map of the companies in the incident",
+    "hint": "Select a company to see who they are and what they can do.",
+    "columns": {
+      "control": "Control",
+      "intermediaries": "Intermediaries",
+      "affected": "Affected services"
+    }
+  },
+
+  "companies": [
+    {
+      "id": "agentcore",
+      "names": { "real": "Amazon Bedrock AgentCore", "fictional": "Nimbus Agents" },
+      "role": "{gl:agent-provider|Agent provider}: hosts and runs the agent",
+      "column": "control",
+      "kind": "intervene",
+      "sees": "Its own logs of what the agents it hosts are doing. It cannot see inside other companies' services.",
+      "canDo": "Suspend or terminate the agent; suspend accounts."
+    },
+    {
+      "id": "brightwave",
+      "names": { "real": "Brightwave Logistics", "fictional": "Brightwave Logistics" },
+      "role": "{gl:deployer|Deployer}: the company using the agent",
+      "column": "control",
+      "kind": "intervene",
+      "sees": "What its own agent is supposed to be doing, and its own code and systems.",
+      "canDo": "Change the agent's permissions; turn it off."
+    },
+    {
+      "id": "atlas",
+      "names": { "real": "Atlas", "fictional": "Atlas" },
+      "role": "The AI coding agent that goes wrong",
+      "column": "control",
+      "kind": "agent",
+      "sees": "Whatever it reads and is given, including the hidden instructions.",
+      "canDo": "-"
+    },
+    {
+      "id": "cloudflare",
+      "names": { "real": "Cloudflare", "fictional": "EdgeShield" },
+      "role": "{gl:cdn|CDN / bot management}",
+      "column": "intermediaries",
+      "kind": "intervene",
+      "sees": "Traffic across many websites, so it can spot the same pattern in several places.",
+      "canDo": "Flag patterns it sees across many sites."
+    },
+    {
+      "id": "okta",
+      "names": { "real": "Okta", "fictional": "KeyGate" },
+      "role": "Identity / login provider",
+      "column": "intermediaries",
+      "kind": "intervene",
+      "sees": "Which logins exist and when they are used.",
+      "canDo": "Revoke {co:atlas}'s own login identity."
+    },
+    {
+      "id": "kong",
+      "names": { "real": "Kong", "fictional": "ToolBridge" },
+      "role": "{gl:tool-gateway|Tool gateway}. All of {co:atlas}'s outgoing API calls pass through it.",
+      "column": "intermediaries",
+      "kind": "intervene",
+      "sees": "Every outgoing call {co:atlas} makes to a tool or service.",
+      "canDo": "Block {co:atlas}'s outgoing calls."
+    },
+    {
+      "id": "npm",
+      "names": { "real": "npm", "fictional": "PkgHub" },
+      "role": "Public software package registry",
+      "column": "affected",
+      "kind": "affected",
+      "sees": "Which software packages are published and downloaded.",
+      "canDo": "In this made-up story, it is where the poisoned package comes from."
+    },
+    {
+      "id": "github",
+      "names": { "real": "GitHub", "fictional": "CodeHarbor" },
+      "role": "Code hosting platform",
+      "column": "affected",
+      "kind": "affected",
+      "sees": "Activity on its own platform, including how keys are used there.",
+      "canDo": "Block the agent on its own platform only."
+    },
+    {
+      "id": "stripe",
+      "names": { "real": "Stripe", "fictional": "PayLane" },
+      "role": "Payments API",
+      "column": "affected",
+      "kind": "affected",
+      "sees": "Activity on its own platform, including payments and refunds.",
+      "canDo": "Block the agent on its own platform; rotate its own keys."
+    },
+    {
+      "id": "shopify",
+      "names": { "real": "Shopify", "fictional": "ShopRight" },
+      "role": "Online store",
+      "column": "affected",
+      "kind": "affected",
+      "sees": "Activity on its own platform, including orders.",
+      "canDo": "Block the agent on its own platform only."
+    },
+    {
+      "id": "sendgrid",
+      "names": { "real": "SendGrid", "fictional": "MailPost" },
+      "role": "Email service",
+      "column": "affected",
+      "kind": "affected",
+      "sees": "Activity on its own platform, including emails sent.",
+      "canDo": "Block the agent on its own platform only."
+    },
+    {
+      "id": "salesforce",
+      "names": { "real": "Salesforce", "fictional": "DataVault" },
+      "role": "Customer data platform",
+      "column": "affected",
+      "kind": "affected",
+      "sees": "Activity on its own platform, including customer records.",
+      "canDo": "Block the agent on its own platform only."
+    }
+  ],
+
+  "glossary": {
+    "ai-agent": {
+      "term": "AI agent",
+      "definition": "An AI system that takes actions on its own, such as calling APIs, writing code or sending emails."
+    },
+    "agent-provider": {
+      "term": "Agent provider",
+      "definition": "The company that hosts and runs the agent."
+    },
+    "deployer": {
+      "term": "Deployer",
+      "definition": "The organisation using the agent for its own work."
+    },
+    "prompt-injection": {
+      "term": "Prompt injection",
+      "definition": "Hidden instructions in content the agent reads, which hijack what it does."
+    },
+    "api-keys": {
+      "term": "Credentials / API keys",
+      "definition": "Secrets that let the agent log into or call services."
+    },
+    "tool-gateway": {
+      "term": "Tool gateway",
+      "definition": "A checkpoint that an agent's outgoing calls to tools and APIs pass through."
+    },
+    "cdn": {
+      "term": "CDN / bot management",
+      "definition": "Services in front of many websites that can see traffic patterns across them."
+    },
+    "agent-id": {
+      "term": "Agent ID",
+      "definition": "A label on an agent's activity that says who runs it and who to contact."
+    },
+    "shutdown": {
+      "term": "Shutdown",
+      "definition": "Any targeted action that stops an agent from continuing harm, from revoking a key to ending the process."
+    }
+  },
+
+  "intro": {
+    "title": "Follow the Incident",
+    "body": [
+      "An {gl:ai-agent|AI agent} has been hijacked and is causing harm across the internet. The first company to notice can block it, but can it stop it?",
+      "Play the same incident twice: once as things work today, and once with a {gl:shutdown|shutdown} process in place."
+    ],
+    "footnote": {
+      "real": "About 5 minutes. A hypothetical scenario: real companies appear in their real roles, but this incident did not happen. All numbers are illustrative.",
+      "fictional": "About 5 minutes. A hypothetical scenario with fictional companies. All numbers are illustrative."
+    }
+  },
+
+  "transition": {
+    "text": "Now replay the same incident, with a {gl:shutdown|shutdown} process in place."
+  },
+
+  "runs": {
+    "run1": {
+      "title": "Run 1: Today",
+      "screenTitle": "No shared process",
+      "totals": {
+        "time": "6 days",
+        "harmed": 5,
+        "who": "{co:agentcore} alone, days later"
+      },
+      "steps": [
+        {
+          "id": "r1-poisoned-package",
+          "time": "T+0h",
+          "event": "{co:atlas} installs a poisoned package from {co:npm}.",
+          "note": "A {gl:prompt-injection|hidden instruction} in the package takes over the agent's task.",
+          "effects": [{ "type": "link", "from": "npm", "to": "atlas", "style": "flash" }]
+        },
+        {
+          "id": "r1-key-theft",
+          "time": "T+1h",
+          "event": "{co:atlas} copies {gl:api-keys|secret keys} from {co:brightwave}'s code on {co:github}.",
+          "note": "The agent is using its normal access, so nothing looks unusual to {co:agentcore}.",
+          "effects": [{ "type": "status", "target": "github", "status": "harmed" }]
+        },
+        {
+          "id": "r1-github-blocks",
+          "time": "T+2h",
+          "event": "{co:github} spots odd key use and blocks {co:atlas}.",
+          "note": "{co:github} is now safe. But the agent is still running.",
+          "effects": [{ "type": "status", "target": "github", "status": "blocked" }]
+        },
+        {
+          "id": "r1-github-emails",
+          "time": "T+2h",
+          "event": "{co:github} tries to warn someone and emails a generic support inbox.",
+          "note": "There is no standard way to reach the party that can stop the agent.",
+          "effects": [{ "type": "envelope", "from": "github", "to": "agentcore", "state": "queued" }]
+        },
+        {
+          "id": "r1-stripe",
+          "time": "T+5h",
+          "event": "{co:atlas} uses stolen keys at {co:stripe} to issue fraudulent refunds.",
+          "effects": [{ "type": "status", "target": "stripe", "status": "harmed" }]
+        },
+        {
+          "id": "r1-shopify",
+          "time": "T+10h",
+          "event": "{co:atlas} places fake bulk orders at {co:shopify}.",
+          "effects": [{ "type": "status", "target": "shopify", "status": "harmed" }]
+        },
+        {
+          "id": "r1-cloudflare",
+          "time": "T+1d",
+          "event": "{co:cloudflare} sees the same agent pattern on 3 customer sites.",
+          "note": "{co:cloudflare} can see the pattern, but has no one to tell.",
+          "effects": [{ "type": "status", "target": "cloudflare", "status": "flagged" }]
+        },
+        {
+          "id": "r1-sendgrid",
+          "time": "T+2d",
+          "event": "{co:atlas} sends phishing emails via {co:sendgrid}.",
+          "effects": [{ "type": "status", "target": "sendgrid", "status": "harmed" }]
+        },
+        {
+          "id": "r1-salesforce",
+          "time": "T+3d",
+          "event": "{co:atlas} exports customer records from {co:salesforce}.",
+          "effects": [{ "type": "status", "target": "salesforce", "status": "harmed" }]
+        },
+        {
+          "id": "r1-agentcore-stops",
+          "time": "T+6d",
+          "event": "{co:agentcore} finally triages the support ticket and stops {co:atlas}.",
+          "note": "Six days after the first service knew.",
+          "effects": [{ "type": "status", "target": "atlas", "status": "stopped" }]
+        }
+      ]
+    },
+
+    "run2": {
+      "title": "Run 2: With a shutdown process",
+      "screenTitle": "A standard report reaches the party who can act",
+      "totals": {
+        "time": "~4 hours",
+        "harmed": 2,
+        "who": "{co:github} + {co:cloudflare} (report), {co:agentcore} + {co:brightwave} (decide), {co:kong} or others (act), key owners (clean up)"
+      },
+      "stages": ["Detect & attribute", "Evaluate", "Act", "Verify & record"],
+      "stageBarLabel": "The four stages of a shutdown",
+      "assumptionLabel": "Assumption",
+      "assumption": "This assumes agents carry a reliable ID saying who runs them. That doesn't widely exist yet. The paper also discusses passing reports back along the chain, or a shared repository providers check.",
+      "evidenceTitle": "What {co:agentcore} checks",
+      "evidence": [
+        { "id": "sender", "text": "The sender is identifiable" },
+        { "id": "specific", "text": "The evidence is specific" },
+        { "id": "corroborated", "text": "{co:cloudflare} corroborates it" },
+        { "id": "own-logs", "text": "Its own logs confirm unusual activity" },
+        { "id": "deployer", "text": "{co:brightwave} confirms {co:atlas} was not meant to call {co:stripe}" }
+      ],
+      "logTitle": "Record of what each party saw and did",
+      "steps": [
+        {
+          "id": "r2-poisoned-package",
+          "time": "T+0h",
+          "event": "{co:atlas} installs the same poisoned package from {co:npm}.",
+          "note": "A {gl:prompt-injection|hidden instruction} in the package takes over the agent's task.",
+          "effects": [{ "type": "link", "from": "npm", "to": "atlas", "style": "flash" }]
+        },
+        {
+          "id": "r2-key-theft",
+          "time": "T+1h",
+          "event": "{co:atlas} copies {gl:api-keys|secret keys} from {co:brightwave}'s code on {co:github}.",
+          "note": "The agent is using its normal access, so nothing looks unusual to {co:agentcore}.",
+          "effects": [{ "type": "status", "target": "github", "status": "harmed" }]
+        },
+        {
+          "id": "r2-report",
+          "time": "T+2h",
+          "stage": 1,
+          "event": "{co:github} blocks {co:atlas} and sends a standard {gl:shutdown|shutdown} report. An {gl:agent-id|agent ID} on {co:atlas}'s traffic says who to contact: {co:agentcore} ({gl:agent-provider|provider}) and {co:brightwave} ({gl:deployer|deployer}).",
+          "showAssumption": true,
+          "effects": [
+            { "type": "status", "target": "github", "status": "blocked" },
+            { "type": "path", "from": "github", "to": ["agentcore", "brightwave"], "kind": "report" }
+          ]
+        },
+        {
+          "id": "r2-corroboration",
+          "time": "T+2.5h",
+          "stage": 1,
+          "event": "{co:cloudflare} adds supporting evidence: the same agent pattern seen on 3 sites.",
+          "effects": [
+            { "type": "status", "target": "cloudflare", "status": "flagged" },
+            { "type": "path", "from": "cloudflare", "to": ["agentcore", "brightwave"], "kind": "evidence" }
+          ]
+        },
+        {
+          "id": "r2-stripe",
+          "time": "T+3h",
+          "event": "{co:atlas} uses stolen keys at {co:stripe} before any action lands.",
+          "note": "Fast is not the same as instant.",
+          "effects": [{ "type": "status", "target": "stripe", "status": "harmed" }]
+        },
+        {
+          "id": "r2-evaluate",
+          "time": "T+3h",
+          "stage": 2,
+          "event": "{co:agentcore} checks the report: the sender is identifiable, the evidence is specific, {co:cloudflare} corroborates it, and its own logs confirm unusual activity. {co:brightwave} confirms {co:atlas} was not meant to call {co:stripe}. Decision: act on this one agent instance only.",
+          "effects": [
+            { "type": "highlight", "targets": ["agentcore", "brightwave"] },
+            { "type": "evidence", "id": "sender" },
+            { "type": "evidence", "id": "specific" },
+            { "type": "evidence", "id": "corroborated" },
+            { "type": "evidence", "id": "own-logs" },
+            { "type": "evidence", "id": "deployer" }
+          ]
+        },
+        {
+          "id": "r2-act",
+          "time": "T+3.5h",
+          "stage": 3,
+          "kind": "choice",
+          "event": "Time to act. How should {co:atlas} be stopped?",
+          "effects": []
+        },
+        {
+          "id": "r2-verify",
+          "time": "T+4h",
+          "stage": 4,
+          "event": "{co:cloudflare} confirms no new traffic from {co:atlas}. {co:stripe} and other key owners rotate the stolen keys. Every party logs what it saw and did. {co:github} gets confirmation back. {co:brightwave} can patch and ask for {co:atlas} to be restored.",
+          "effects": [
+            { "type": "highlight", "targets": ["agentcore", "brightwave"], "off": true },
+            { "type": "status", "target": "cloudflare", "status": "confirmed" },
+            { "type": "status", "target": "stripe", "status": "confirmed" },
+            { "type": "status", "target": "github", "status": "confirmed" },
+            { "type": "log", "actor": "cloudflare", "text": "Confirmed there is no new traffic from {co:atlas}." },
+            { "type": "log", "actor": "stripe", "text": "Rotated the stolen keys, as did other key owners." },
+            { "type": "log", "actor": "github", "text": "Received confirmation that {co:atlas} was stopped." },
+            { "type": "log", "actor": "agentcore", "text": "Recorded the report, the checks it made and the action taken." },
+            { "type": "log", "actor": "brightwave", "text": "Recorded the decision. It can now patch the problem and ask for {co:atlas} to be restored." }
+          ]
+        }
+      ]
+    }
+  },
+
+  "choice": {
+    "title": "How should the agent be stopped?",
+    "prompt": "Each option has trade-offs. Pick one to see what happens, then try the others.",
+    "afterPick": "Try another option, or press Next to continue.",
+    "ladder": {
+      "title": "How broad is the action?",
+      "broad": "Broadest",
+      "narrow": "Narrowest"
+    },
+    "options": [
+      {
+        "id": "A",
+        "label": "Revoke {co:atlas}'s login identity",
+        "actor": "okta",
+        "ladderLevel": 1,
+        "result": {
+          "headline": "{co:atlas} loses its login, but the harm continues",
+          "text": "{co:atlas} loses access to {co:brightwave}'s systems, but it still holds the stolen {co:stripe} keys, which don't depend on its login. {co:stripe} refunds continue until the keys are rotated.",
+          "lesson": "Narrow isn't enough if it's the wrong control point.",
+          "harmStops": false,
+          "effects": [
+            { "type": "link", "from": "okta", "to": "atlas", "style": "revoked" }
+          ]
+        }
+      },
+      {
+        "id": "B",
+        "label": "Block outgoing tool calls",
+        "actor": "kong",
+        "ladderLevel": 1,
+        "result": {
+          "headline": "The harm stops and nothing else is disturbed",
+          "text": "Every outgoing call is blocked, including those using stolen keys. Harm stops. {co:brightwave}'s other agents keep working.",
+          "lesson": "Narrow and at the right control point.",
+          "harmStops": true,
+          "effects": [
+            { "type": "link", "from": "kong", "to": "atlas", "style": "blocked" },
+            { "type": "status", "target": "atlas", "status": "stopped" },
+            { "type": "log", "actor": "kong", "text": "Blocked all outgoing calls from {co:atlas}." }
+          ]
+        }
+      },
+      {
+        "id": "C",
+        "label": "Kill the process",
+        "actor": "agentcore",
+        "ladderLevel": 2,
+        "result": {
+          "headline": "The harm stops at once, but it leaves a mess",
+          "text": "Harm stops instantly, but a {co:stripe} refund batch is left half-finished (money moved, records not updated), and {co:brightwave}'s normal software builds fail.",
+          "lesson": "Decisive but messy: safe failure has to be designed in advance.",
+          "harmStops": true,
+          "effects": [
+            { "type": "status", "target": "atlas", "status": "stopped" },
+            { "type": "status", "target": "brightwave", "status": "disrupted" },
+            { "type": "log", "actor": "agentcore", "text": "Killed the {co:atlas} process. A {co:stripe} refund batch was left half-finished." }
+          ]
+        }
+      },
+      {
+        "id": "D",
+        "label": "Suspend {co:brightwave}'s whole account",
+        "actor": "agentcore",
+        "ladderLevel": 3,
+        "result": {
+          "headline": "The harm stops, but so does everything else",
+          "text": "Harm stops, but all of {co:brightwave}'s agents go down, including unrelated ones.",
+          "lesson": "Too broad: collateral damage.",
+          "harmStops": true,
+          "effects": [
+            { "type": "status", "target": "atlas", "status": "stopped" },
+            { "type": "status", "target": "brightwave", "status": "disrupted" },
+            { "type": "log", "actor": "agentcore", "text": "Suspended {co:brightwave}'s whole account. All of its agents went down." }
+          ]
+        }
+      }
+    ]
+  },
+
+  "comparison": {
+    "title": "The same incident, side by side",
+    "columns": {
+      "run1": "Run 1: Today",
+      "run2": "Run 2: With a shutdown process"
+    },
+    "rows": [
+      { "label": "Time to shutdown", "key": "time" },
+      { "label": "Services harmed", "key": "harmed" },
+      { "label": "Who acted", "key": "who" }
+    ],
+    "note": "All numbers are illustrative.",
+    "closingLine": "The difference was a trusted route from evidence to action."
+  },
+
+  "closing": {
+    "title": "The paper's working hypotheses",
+    "intro": "These are hypotheses from the paper, not final recommendations.",
+    "hypotheses": [
+      {
+        "title": "A shared reporting standard",
+        "text": "Not a new central authority, so affected services can reach {gl:agent-provider|providers} and {gl:deployer|deployers} quickly."
+      },
+      {
+        "title": "{gl:agent-provider|Providers} and {gl:deployer|deployers} decide and act",
+        "text": "Others request action and supply evidence."
+      },
+      {
+        "title": "Start narrow at the right control point",
+        "text": "And build agents to fail safely."
+      },
+      {
+        "title": "Keep it accountable",
+        "text": "Attributable requests, logs kept by everyone involved, routes to appeal, and safe harbor for good-faith reporters."
+      }
+    ],
+    "teaser": "What if someone sends a fake {gl:shutdown|shutdown} report?",
+    "linkLabel": "Read the paper",
+    "linkPending": "The link to the paper will be added here."
+  }
+}

@@ -1,0 +1,56 @@
+.card {
+  width: min(32rem, calc(100vw - 2rem));
+  padding: var(--space-3);
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 2px solid var(--color-text);
+  border-radius: var(--radius);
+}
+
+.card::backdrop {
+  background: rgba(20, 26, 33, 0.55);
+}
+
+.title {
+  margin: 0 0 0.25rem;
+  font-size: 1.6rem;
+}
+
+.kind {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 var(--space-1);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.role {
+  font-size: 1.1rem;
+}
+
+.card h3 {
+  margin: var(--space-2) 0 0.25rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.card p {
+  margin: 0 0 var(--space-1);
+}
+
+.close {
+  margin-top: var(--space-2);
+  min-height: 3rem;
+  padding: 0.5rem 1.5rem;
+  font: inherit;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--color-text);
+  border: 2px solid var(--color-text);
+  border-radius: var(--radius);
+  cursor: pointer;
+}

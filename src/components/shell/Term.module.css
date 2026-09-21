@@ -1,0 +1,26 @@
+.term {
+  border-bottom: 2px dotted var(--color-text-muted);
+  cursor: help;
+}
+
+/* Placed with fixed coordinates from Term.tsx, so it never runs off the screen. */
+.tip {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  width: max-content;
+  max-width: min(20rem, calc(100vw - 1rem));
+  padding: var(--space-1) 0.75rem;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+  color: var(--color-banner-text);
+  background: var(--color-banner-bg);
+  border-radius: var(--radius);
+}
+
+.open {
+  display: block;
+}

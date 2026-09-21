@@ -1,0 +1,15 @@
+.assumption {
+  margin: var(--space-1) 0 0;
+  padding: 0.6rem var(--space-2);
+  font-size: 1rem;
+  line-height: 1.45;
+  background: var(--color-intervene-soft);
+  border: 2px dashed var(--color-text-muted);
+  border-radius: var(--radius);
+}
+
+.label {
+  margin-right: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}

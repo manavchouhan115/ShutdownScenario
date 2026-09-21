@@ -1,0 +1,43 @@
+.map {
+  /* Lets the boxes size their text relative to the map (cqw = 1% of the map's width). */
+  container-type: inline-size;
+  /* Leaves room for the buttons pinned to the bottom of the window when scrolled into view. */
+  scroll-margin-bottom: 6rem;
+  position: relative;
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.columnTitle {
+  position: absolute;
+  top: 1.5%;
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.node {
+  position: absolute;
+  box-sizing: border-box;
+}
+
+/* On narrow screens the map is replaced by a vertical list (MobileList). */
+@media (max-width: 64rem) {
+  .map {
+    display: none;
+  }
+}

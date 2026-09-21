@@ -1,0 +1,150 @@
+/* Lines on the map. Newest lines draw themselves from source to target. */
+.flash,
+.report,
+.evidence,
+.queued,
+.blocked,
+.revoked {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Solid lines use one long dash so they can "draw in" (see .current below). */
+.flash,
+.report,
+.blocked {
+  stroke-dasharray: 1;
+}
+
+.flash {
+  stroke: var(--color-harmed);
+  stroke-width: 4;
+}
+
+.report {
+  stroke: #1d3f9e;
+  stroke-width: 4;
+}
+
+.evidence {
+  stroke: #a16207;
+  stroke-width: 3;
+  stroke-dasharray: 0.03 0.02;
+}
+
+.queued {
+  stroke: var(--color-text-muted);
+  stroke-width: 2.5;
+  stroke-dasharray: 0.02 0.02;
+}
+
+.blocked {
+  stroke: var(--color-agent);
+  stroke-width: 4;
+}
+
+.revoked {
+  stroke: var(--color-text-muted);
+  stroke-width: 3;
+  stroke-dasharray: 0.03 0.02;
+}
+
+/* Earlier lines stay visible but quieter. */
+.past {
+  opacity: 0.45;
+}
+
+.current {
+  animation: draw 1.2s ease-out 1;
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Dashed lines: the draw-in uses a wipe instead of an offset. */
+.evidence.current,
+.queued.current,
+.revoked.current {
+  animation: fade 1s ease-out 1;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Arrow and bar ends. Their colours match their lines. */
+.markerFlash {
+  fill: var(--color-harmed);
+  stroke: none;
+}
+
+.markerReport {
+  fill: #1d3f9e;
+  stroke: none;
+}
+
+.markerEvidence {
+  fill: #a16207;
+  stroke: none;
+}
+
+.markerQueued {
+  fill: var(--color-text-muted);
+  stroke: none;
+}
+
+.markerBlocked {
+  fill: var(--color-agent);
+  stroke: none;
+}
+
+.markerRevoked {
+  fill: var(--color-text-muted);
+  stroke: none;
+}
+
+/* The envelope sitting in the support queue. */
+.envelopeBack {
+  fill: #ffffff;
+  stroke: var(--color-text-muted);
+  stroke-width: 2;
+}
+
+.envelopeFront {
+  fill: #ffffff;
+  stroke: var(--color-text);
+  stroke-width: 2.5;
+}
+
+.envelopeFlap {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 2.5;
+}
+
+.envelope.current {
+  animation: fade 0.8s ease-out 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .current,
+  .envelope.current,
+  .evidence.current,
+  .queued.current,
+  .revoked.current {
+    animation: none;
+  }
+}

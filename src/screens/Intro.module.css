@@ -1,0 +1,27 @@
+.body {
+  font-size: 1.35rem;
+  line-height: 1.55;
+}
+
+.footnote {
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.start {
+  margin-top: var(--space-2);
+  min-height: 3.25rem;
+  padding: 0.6rem 2rem;
+  font: inherit;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--color-text);
+  border: 2px solid var(--color-text);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.start:hover {
+  background: #000000;
+}

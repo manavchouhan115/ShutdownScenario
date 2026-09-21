@@ -1,0 +1,54 @@
+.legend {
+  margin-top: var(--space-2);
+}
+
+.title {
+  margin: 0 0 var(--space-1);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  align-items: center;
+  margin: 0 0 var(--space-1);
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.swatch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.5rem;
+  border: 3px solid transparent;
+  border-radius: 0.35rem;
+}
+
+.intervene {
+  background: #f8d75c;
+  border-color: var(--color-intervene);
+}
+
+.affected {
+  background: var(--color-affected-soft);
+  border-color: var(--color-affected);
+}
+
+.agent {
+  color: #ffffff;
+  background: var(--color-agent);
+  border-color: var(--color-agent);
+}

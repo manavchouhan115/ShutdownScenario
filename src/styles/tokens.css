@@ -1,0 +1,36 @@
+/* Shared colours and sizes. Colour code from SPEC: yellow = can intervene,
+   blue = affected, red = harmed, grey = stopped. Colour is never used alone:
+   components also add an icon or a text label. */
+:root {
+  --color-text: #1b1f24;
+  --color-text-muted: #4a5561;
+  --color-bg: #ffffff;
+  --color-surface: #f4f6f8;
+  --color-border: #c9d1d9;
+  --color-focus: #1a4fd6;
+
+  --color-intervene: #f2c230;
+  --color-intervene-soft: #fdf3cf;
+  --color-affected: #3b82c4;
+  --color-affected-soft: #dcebf8;
+  --color-harmed: #c62f2f;
+  --color-harmed-soft: #f9dcdc;
+  --color-stopped: #6b7280;
+  --color-stopped-soft: #e5e7eb;
+  --color-confirmed: #2e7d32;
+  --color-confirmed-soft: #dff1e0;
+  --color-disrupted: #b45309;
+  --color-disrupted-soft: #fde8d0;
+  --color-agent: #2f3640;
+
+  --color-banner-bg: #24303c;
+  --color-banner-text: #ffffff;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+
+  --radius: 0.5rem;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}

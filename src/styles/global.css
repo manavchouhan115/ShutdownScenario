@@ -1,12 +1,48 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 1.125rem;
   line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+  margin: 0 0 var(--space-2);
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  margin: var(--space-3) 0 var(--space-1);
+}
+
+p {
+  margin: 0 0 var(--space-2);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 main {
-  max-width: 48rem;
+  max-width: 52rem;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: var(--space-3) var(--space-2) var(--space-4);
+}
+
+/* Screens with the map need more room. */
+main[data-wide] {
+  max-width: 70rem;
 }

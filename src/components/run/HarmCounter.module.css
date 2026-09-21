@@ -1,0 +1,41 @@
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.label {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.value {
+  min-width: 3.5rem;
+  padding: 0 0.6rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  color: #a01f1f;
+  background: var(--color-harmed-soft);
+  border: 2px solid var(--color-harmed);
+  border-radius: var(--radius);
+  font-variant-numeric: tabular-nums;
+  animation: rise 0.7s ease-out 1;
+}
+
+@keyframes rise {
+  0% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .value {
+    animation: none;
+  }
+}

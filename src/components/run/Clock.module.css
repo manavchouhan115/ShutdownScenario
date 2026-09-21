@@ -1,0 +1,16 @@
+.clock {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.time {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
