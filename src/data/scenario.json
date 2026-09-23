@@ -213,7 +213,9 @@
     "title": "Follow the Incident",
     "body": [
       "An {gl:ai-agent|AI agent} has been hijacked and is causing harm across the internet. The first company to notice can block it, but can it stop it?",
-      "Play the same incident twice: once as things work today, and once with a {gl:shutdown|shutdown} process in place."
+      "This demo walks through the same incident twice, so you can compare the two outcomes.",
+      "Run 1 shows today: with no shared way to report the agent, it keeps causing harm for days.",
+      "Run 2 shows the same incident with a {gl:shutdown|shutdown} process in place: a report reaches the party who can act within hours."
     ],
     "footnote": "About 5 minutes. All numbers are illustrative."
   },
