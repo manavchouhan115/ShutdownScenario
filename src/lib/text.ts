@@ -1,4 +1,4 @@
-import type { ModeText, NameMode, Scenario } from '../types/scenario.ts'
+import type { NameMode, Scenario } from '../types/scenario.ts'
 
 // Placeholders that can appear inside any text in scenario.json:
 //   {co:github}                      -> company name (real or fictional)
@@ -26,11 +26,6 @@ export function parseText(text: string): Segment[] {
   }
   if (last < text.length) segments.push({ kind: 'text', text: text.slice(last) })
   return segments
-}
-
-/** Pick the right wording for the current name mode. */
-export function pickMode(text: ModeText, mode: NameMode): string {
-  return typeof text === 'string' ? text : text[mode]
 }
 
 export function companyName(scenario: Scenario, id: string, mode: NameMode): string {

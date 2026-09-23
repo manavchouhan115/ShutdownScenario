@@ -1,11 +1,5 @@
-// The order of the demo's screens (SPEC section 11).
-export const SCREENS = [
-  'intro',
-  'run1',
-  'transition',
-  'run2',
-  'comparison',
-  'closing',
-] as const
+// The demo's five sections. The viewer switches between them at any time with
+// the tab bar; there is no fixed order to step through.
+export const TABS = ['intro', 'run1', 'run2'] as const
 
-export type ScreenId = (typeof SCREENS)[number]
+export type TabId = (typeof TABS)[number]

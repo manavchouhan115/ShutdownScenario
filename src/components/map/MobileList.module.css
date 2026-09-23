@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media (max-width: 64rem) {
+@media (max-width: 80rem) {
   .list {
     display: block;
   }

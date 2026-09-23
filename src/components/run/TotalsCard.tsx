@@ -6,7 +6,7 @@ import styles from './TotalsCard.module.css'
 /** The run's totals, shown on its last step. Numbers are labelled illustrative. */
 export default function TotalsCard({ totals }: { totals: RunTotals }) {
   const { scenario } = useScenario()
-  const { ui, comparison } = scenario
+  const { ui } = scenario
 
   return (
     <section className={styles.card} aria-labelledby="totals-title">
@@ -14,7 +14,7 @@ export default function TotalsCard({ totals }: { totals: RunTotals }) {
         {ui.endOfRun} ({ui.illustrative})
       </h2>
       <dl className={styles.list}>
-        {comparison.rows.map((row) => (
+        {ui.endOfRunRows.map((row) => (
           <div key={row.key} className={styles.row}>
             <dt>{row.label}</dt>
             <dd>{row.key === 'who' ? <RichText text={totals.who} /> : totals[row.key]}</dd>

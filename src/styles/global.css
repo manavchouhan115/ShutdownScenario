@@ -42,7 +42,7 @@ main {
   padding: var(--space-3) var(--space-2) var(--space-4);
 }
 
-/* Screens with the map need more room. */
+/* Run screens need more room: the map itself, plus the step sidebar beside it. */
 main[data-wide] {
-  max-width: 70rem;
+  max-width: 82rem;
 }

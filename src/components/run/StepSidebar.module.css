@@ -1,0 +1,74 @@
+.sidebar {
+  /* Without this, a grid item won't shrink below its content's natural size,
+     so the horizontally-scrolling row below would widen the whole page
+     instead of scrolling inside itself. */
+  min-width: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.4rem 0.6rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+}
+
+.step:hover {
+  background: var(--color-surface);
+  border-color: var(--color-text-muted);
+}
+
+.number {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.current,
+.current:hover {
+  color: #ffffff;
+  background: var(--color-text);
+  border-color: var(--color-text);
+}
+
+/* Narrow screens: a horizontal scrolling row above the content, like the map's own breakpoint. */
+@media (max-width: 64rem) {
+  .list {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.3rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .step {
+    width: auto;
+    flex: none;
+  }
+}

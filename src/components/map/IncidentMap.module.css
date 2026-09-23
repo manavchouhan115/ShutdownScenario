@@ -35,8 +35,10 @@
   box-sizing: border-box;
 }
 
-/* On narrow screens the map is replaced by a vertical list (MobileList). */
-@media (max-width: 64rem) {
+/* Replaced by the vertical list (MobileList) whenever the map itself would be
+   too narrow to lay its boxes out comfortably. The run screen's step sidebar
+   takes about 12rem of the page, so this switches sooner than a bare map would. */
+@media (max-width: 80rem) {
   .map {
     display: none;
   }

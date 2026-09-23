@@ -2,25 +2,14 @@
   "meta": {
     "title": "Follow the Incident",
     "nameMode": "real",
-    "playIntervalMs": 4000,
-    "paperTitle": "AI Agent Emergency Shutdown: Design Choices for Coordination and Control (SASH, 2026)",
-    "paperUrl": "TODO-add-link-to-paper"
-  },
-
-  "banners": {
-    "real": "Hypothetical scenario. Real companies are shown in their real roles; this incident did not happen.",
-    "fictional": "All companies are fictional."
+    "playIntervalMs": 4000
   },
 
   "ui": {
-    "back": "Back",
-    "next": "Next",
     "play": "Play",
     "pause": "Pause",
-    "restart": "Restart",
     "start": "Start",
     "doneBy": "Done by",
-    "controlsLabel": "Demo controls",
     "close": "Close",
     "seesLabel": "What they can see",
     "canDoLabel": "What they can do",
@@ -29,8 +18,19 @@
     "decidingLabel": "Deciding",
     "checkedLabel": "checked",
     "notCheckedLabel": "not yet checked",
-    "timelineLabel": "Timeline of events",
+    "stepListLabel": "Steps in this run",
+    "tabsLabel": "Sections of the demo",
+    "tabs": {
+      "intro": "Intro",
+      "run1": "Run 1",
+      "run2": "Run 2"
+    },
     "endOfRun": "How this run ended",
+    "endOfRunRows": [
+      { "label": "Time to shutdown", "key": "time" },
+      { "label": "Services harmed", "key": "harmed" },
+      { "label": "Who acted", "key": "who" }
+    ],
     "illustrative": "illustrative",
     "elapsedTime": "Time since the first service knew",
     "servicesHarmed": "Services harmed",
@@ -215,14 +215,7 @@
       "An {gl:ai-agent|AI agent} has been hijacked and is causing harm across the internet. The first company to notice can block it, but can it stop it?",
       "Play the same incident twice: once as things work today, and once with a {gl:shutdown|shutdown} process in place."
     ],
-    "footnote": {
-      "real": "About 5 minutes. A hypothetical scenario: real companies appear in their real roles, but this incident did not happen. All numbers are illustrative.",
-      "fictional": "About 5 minutes. A hypothetical scenario with fictional companies. All numbers are illustrative."
-    }
-  },
-
-  "transition": {
-    "text": "Now replay the same incident, with a {gl:shutdown|shutdown} process in place."
+    "footnote": "About 5 minutes. All numbers are illustrative."
   },
 
   "runs": {
@@ -315,7 +308,7 @@
       "stages": ["Detect & attribute", "Evaluate", "Act", "Verify & record"],
       "stageBarLabel": "The four stages of a shutdown",
       "assumptionLabel": "Assumption",
-      "assumption": "This assumes agents carry a reliable ID saying who runs them. That doesn't widely exist yet. The paper also discusses passing reports back along the chain, or a shared repository providers check.",
+      "assumption": "This assumes agents carry a reliable ID saying who runs them. That doesn't widely exist yet. Other options include passing reports back along the chain, or a shared repository providers check.",
       "evidenceTitle": "What {co:agentcore} checks",
       "evidence": [
         { "id": "sender", "text": "The sender is identifiable" },
@@ -488,46 +481,5 @@
         }
       }
     ]
-  },
-
-  "comparison": {
-    "title": "The same incident, side by side",
-    "columns": {
-      "run1": "Run 1: Today",
-      "run2": "Run 2: With a shutdown process"
-    },
-    "rows": [
-      { "label": "Time to shutdown", "key": "time" },
-      { "label": "Services harmed", "key": "harmed" },
-      { "label": "Who acted", "key": "who" }
-    ],
-    "note": "All numbers are illustrative.",
-    "closingLine": "The difference was a trusted route from evidence to action."
-  },
-
-  "closing": {
-    "title": "The paper's working hypotheses",
-    "intro": "These are hypotheses from the paper, not final recommendations.",
-    "hypotheses": [
-      {
-        "title": "A shared reporting standard",
-        "text": "Not a new central authority, so affected services can reach {gl:agent-provider|providers} and {gl:deployer|deployers} quickly."
-      },
-      {
-        "title": "{gl:agent-provider|Providers} and {gl:deployer|deployers} decide and act",
-        "text": "Others request action and supply evidence."
-      },
-      {
-        "title": "Start narrow at the right control point",
-        "text": "And build agents to fail safely."
-      },
-      {
-        "title": "Keep it accountable",
-        "text": "Attributable requests, logs kept by everyone involved, routes to appeal, and safe harbor for good-faith reporters."
-      }
-    ],
-    "teaser": "What if someone sends a fake {gl:shutdown|shutdown} report?",
-    "linkLabel": "Read the paper",
-    "linkPending": "The link to the paper will be added here."
   }
 }

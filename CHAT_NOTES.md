@@ -365,6 +365,40 @@ Stage 8 is done, which finishes the v1 plan. `npm run build`, `npm run lint` and
 
 ---
 
+## 12. Navigation redesign: tabs on top, steps on the left
+
+You asked for a different shape: a button on top to switch between Run 1 and Run 2, and buttons on the left to jump to any step 1 to n inside the run currently open, with switching runs always starting over from step 1. `npm run build`, `npm run lint` and the `scenario.json` check all pass. I ran an automated check that visits every step of both runs, with all four choices, at 8 window widths (320 to 1440 px) — 328 screen states, 0 problems.
+
+**What the page looks like now**
+- **A row of five tabs at the top, under the banner: Intro, Run 1, Run 2, Compare, Hypotheses.** Clicking Run 1 or Run 2 always starts that run over from step 1, even if you were already on it. The banner and the tabs stay on screen while you scroll.
+- **Inside Run 1 or Run 2, a numbered list of every step sits on the left.** Click any step, in any order, to jump straight to it — nothing is gated any more. The step you're on is highlighted.
+- **Play** now advances from wherever you currently are, not just from the start, and still pauses itself at the last step and at the choice step until you pick an option.
+- The old Back/Next/Restart buttons and the guided step-by-step order are gone, since the tabs and the step list replace them. The Transition screen ("Now replay the same incident...") is gone too, since Run 2 is just a tab click away; I removed its text from `scenario.json` rather than leave it unused.
+- On a phone or a narrow window, the step list becomes a horizontal scrolling row above the content instead of a left-hand column.
+
+**Two layout bugs I found and fixed while building this**
+1. The step list, when it became a horizontal scrolling row on narrow screens, was widening the whole page instead of scrolling inside itself. Fixed with one CSS rule.
+2. The step sidebar takes up room that used to belong to the map, so the map's boxes were clipping company names on some window widths (1100 to 1440 px) that were fine before. I widened the run screens' maximum width and adjusted where the map switches to its narrow vertical-list layout, to give it enough room again.
+
+**Not changed:** `SPEC.md` still describes the old screen-by-screen order, at your request. The map, company cards, tooltips, colours, the choice ladder, the evidence checklist, the record panel and the real/fictional switch all work exactly as before, just inside the new layout.
+
+---
+
+## 13. Removed: Compare tab, Hypotheses tab, paper mentions, and the banner
+
+You asked to remove the Compare and Hypotheses tabs, remove any mention of the paper from the site, and remove the "Hypothetical scenario" banner, since you'll give that context yourself when you share the link. `npm run build`, `npm run lint` and the `scenario.json` check all pass.
+
+**What changed**
+- **Only three tabs left: Intro, Run 1, Run 2.** The Compare screen (the side-by-side numbers table) and the Hypotheses screen (the four working hypotheses, the fake-report teaser, and the link to the paper) are both gone.
+- **No mention of the paper anywhere.** The paper's title, its link, and the one line in Run 2 that said "The paper also discusses..." are all removed or reworded.
+- **The top banner is gone.** I also removed the same disclaimer sentence from the intro screen, since you confirmed you'd rather have no on-page disclaimer at all, only the timing note ("About 5 minutes. All numbers are illustrative.").
+- The end-of-run summary box ("How this run ended") still works — it used to share its row labels with the Compare screen, so I moved those into the run screen's own settings rather than deleting them.
+- Deleted the now-unused files: `Comparison.tsx`, `Closing.tsx`, `Banner.tsx`, and their stylesheets.
+
+**One thing worth flagging:** `CLAUDE.md` (this project's own instructions) says the hypothetical-scenario banner should appear on every screen, specifically because real company names are used in a fabricated harmful scenario, and asks me to ask before doing something that conflicts with it. I did ask, and you were clear that you'll add that context yourself whenever you share the link — that's a reasonable call as the person publishing it, I just want it on record that removing the banner is a deliberate change from what `CLAUDE.md` currently says. Worth remembering to add that context every time you share the link, since a link can end up forwarded on without it.
+
+---
+
 ## Working preferences you have given me
 - Git stays local only: never push, and no commit after each stage (Stage 0 is the only commit so far). Commit only if you ask.
 - Update this file after each stage.

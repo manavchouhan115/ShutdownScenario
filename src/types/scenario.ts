@@ -7,9 +7,6 @@
 
 export type NameMode = 'real' | 'fictional'
 
-/** Text that is the same in both name modes, or differs between them. */
-export type ModeText = string | { real: string; fictional: string }
-
 export type Column = 'control' | 'intermediaries' | 'affected'
 
 /** intervene = yellow, affected = blue, agent = the rogue agent itself. */
@@ -95,19 +92,12 @@ export interface Scenario {
     title: string
     nameMode: NameMode
     playIntervalMs: number
-    paperTitle: string
-    paperUrl: string
   }
-  banners: { real: string; fictional: string }
   ui: {
-    back: string
-    next: string
     play: string
     pause: string
-    restart: string
     start: string
     doneBy: string
-    controlsLabel: string
     close: string
     seesLabel: string
     canDoLabel: string
@@ -116,8 +106,11 @@ export interface Scenario {
     decidingLabel: string
     checkedLabel: string
     notCheckedLabel: string
-    timelineLabel: string
+    stepListLabel: string
+    tabsLabel: string
+    tabs: { intro: string; run1: string; run2: string }
     endOfRun: string
+    endOfRunRows: { label: string; key: 'time' | 'harmed' | 'who' }[]
     illustrative: string
     elapsedTime: string
     servicesHarmed: string
@@ -127,8 +120,7 @@ export interface Scenario {
   map: { label: string; hint: string; columns: Record<Column, string> }
   companies: Company[]
   glossary: Record<string, GlossaryEntry>
-  intro: { title: string; body: string[]; footnote: ModeText }
-  transition: { text: string }
+  intro: { title: string; body: string[]; footnote: string }
   runs: {
     run1: Run & { title: string; screenTitle: string }
     run2: Run & {
@@ -149,22 +141,6 @@ export interface Scenario {
     afterPick: string
     ladder: { title: string; broad: string; narrow: string }
     options: ChoiceOption[]
-  }
-  comparison: {
-    title: string
-    columns: { run1: string; run2: string }
-    rows: { label: string; key: 'time' | 'harmed' | 'who' }[]
-    note: string
-    closingLine: string
-  }
-  closing: {
-    title: string
-    intro: string
-    hypotheses: { title: string; text: string }[]
-    teaser: string
-    linkLabel: string
-    /** Shown instead of the link while meta.paperUrl is not a real web address yet. */
-    linkPending: string
   }
 }
 
